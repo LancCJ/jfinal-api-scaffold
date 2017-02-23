@@ -1,7 +1,7 @@
 package com.mlongbo.jfinal.interceptor;
 
 import com.jfinal.aop.Interceptor;
-import com.jfinal.core.ActionInvocation;
+import com.jfinal.aop.Invocation;
 import com.mlongbo.jfinal.common.bean.BaseResponse;
 import com.mlongbo.jfinal.common.bean.Code;
 import org.slf4j.Logger;
@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 public class ErrorInterceptor implements Interceptor {
     private static final Logger logger = LoggerFactory.getLogger(ErrorInterceptor.class);
     @Override
-    public void intercept(ActionInvocation ai) {
+    public void intercept(Invocation ai) {
         try {
             ai.invoke();
         } catch (Exception e) {

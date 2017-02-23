@@ -1,7 +1,7 @@
 package com.mlongbo.jfinal.interceptor;
 
 import com.jfinal.aop.Interceptor;
-import com.jfinal.core.ActionInvocation;
+import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 import com.mlongbo.jfinal.common.bean.BaseResponse;
 import com.mlongbo.jfinal.common.bean.Code;
@@ -17,7 +17,7 @@ import com.mlongbo.jfinal.model.User;
  */
 public class TokenInterceptor implements Interceptor {
     @Override
-    public void intercept(ActionInvocation ai) {
+    public void intercept(Invocation ai) {
         Controller controller = ai.getController();
         String token = controller.getPara("token");
         if (StringUtils.isEmpty(token)) {

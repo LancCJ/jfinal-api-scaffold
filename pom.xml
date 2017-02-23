@@ -54,11 +54,10 @@
             <version>26Dec2008</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.jfinal</groupId>
             <artifactId>jfinal</artifactId>
-            <version>1.9</version>
+            <version>3.0</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>

@@ -1,7 +1,6 @@
 package com.mlongbo.jfinal.model;
 
 import com.jfinal.plugin.activerecord.Model;
-
 import java.util.Map;
 
 /**
@@ -9,14 +8,14 @@ import java.util.Map;
  * @date 2015/2/13
  */
 public class User extends Model<User> {
-	public static String USER_ID = "userId";
-	public static String LOGIN_NAME = "loginName";
-	public static String NICK_NAME = "nickName";
+	public static String USER_ID = "id";
+	public static String LOGIN_NAME = "username";
+	public static String NICK_NAME = "realname";
 	public static String PASSWORD = "password";
 	public static String SEX = "sex";
-	public static String EMAIL = "email";
-	public static String STATUS = "status";
-	public static String CREATION_DATE = "creationDate";
+	public static String EMAIL = "mail";
+	public static String STATUS = "type";
+	public static String CREATION_DATE = "create_time";
 	public static String AVATAR = "avatar";
 
 	

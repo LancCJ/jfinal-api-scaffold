@@ -5,7 +5,6 @@ import com.jfinal.handler.Handler;
 import com.jfinal.render.RenderFactory;
 import com.mlongbo.jfinal.common.bean.Code;
 import com.mlongbo.jfinal.common.bean.BaseResponse;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
@@ -20,7 +19,7 @@ public class APINotFoundHandler extends Handler {
     @Override
     public void handle(String target, HttpServletRequest request, HttpServletResponse response, boolean[] isHandled) {
         if (!target.startsWith("/api")) {
-            this.nextHandler.handle(target, request, response, isHandled);
+            this.next.handle(target, request, response, isHandled);
             return;
         }
         
@@ -31,9 +30,9 @@ public class APINotFoundHandler extends Handler {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            RenderFactory.me().getJsonRender(new BaseResponse(Code.NOT_FOUND, "resource is not found")).setContext(request, response).render();
+            new RenderFactory().getJsonRender(new BaseResponse(Code.NOT_FOUND, "resource is not found")).setContext(request, response).render();
         } else {
-            this.nextHandler.handle(target, request, response, isHandled);
+            this.next.handle(target, request, response, isHandled);
         }
     }
 }

@@ -3,6 +3,7 @@ package com.mlongbo.jfinal;
 import com.jfinal.config.*;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.render.ViewType;
+import com.jfinal.template.Engine;
 import com.mlongbo.jfinal.config.Context;
 import com.mlongbo.jfinal.handler.ContextHandler;
 import com.mlongbo.jfinal.interceptor.ErrorInterceptor;
@@ -17,7 +18,8 @@ import com.mlongbo.jfinal.router.ActionRouter;
  * @author mlongbo
  */
 public class AppConfig extends JFinalConfig {
-
+    public void configEngine(Engine me) {
+    }
     /**
      * 常量配置
      */
@@ -58,9 +60,9 @@ public class AppConfig extends JFinalConfig {
         ActiveRecordPlugin arp = new ActiveRecordPlugin(hcp);
 		me.add(arp);
 		
-		arp.addMapping("t_user", User.USER_ID, User.class);//用户表
-        arp.addMapping("t_register_code", RegisterCode.MOBILE, RegisterCode.class); //注册验证码对象
-        arp.addMapping("t_feedback", FeedBack.class); //意见反馈表
+		arp.addMapping("user", User.USER_ID, User.class);//用户表
+        arp.addMapping("register_code", RegisterCode.MOBILE, RegisterCode.class); //注册验证码对象
+        arp.addMapping("feedback", FeedBack.class); //意见反馈表
 	}
 
     /**
