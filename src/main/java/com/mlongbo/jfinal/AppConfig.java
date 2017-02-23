@@ -2,7 +2,9 @@ package com.mlongbo.jfinal;
 
 import com.jfinal.config.*;
 import com.jfinal.kit.PathKit;
+import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
 import com.mlongbo.jfinal.config.Context;
@@ -59,12 +61,22 @@ public class AppConfig extends JFinalConfig {
         ActiveRecordPlugin arp = new ActiveRecordPlugin(hcp);
         arp.setBaseSqlTemplatePath(PathKit.getRootClassPath()+"/sqls");
         arp.addSqlTemplate("checkUser.sql");//检查用户账号是否被注册
+        arp.addSqlTemplate("listBlog.sql");//查询博客列表
+        arp.addSqlTemplate("listImage.sql");//查询美图列表
+        arp.addSqlTemplate("listMsg.sql");//查询留言列表
+        arp.addSqlTemplate("listVideo.sql");//查询视频列表
         arp.setShowSql(true);
 		me.add(arp);
-		
+
+        // 所有配置在 MappingKit 中搞定
+        _MappingKit.mapping(arp);
+
+		//此处是手动配置  在_JFinalGenerator中配合了自动配置代码
 		arp.addMapping("user", User.USER_ID, User.class);//用户表
         arp.addMapping("register_code", RegisterCode.MOBILE, RegisterCode.class); //注册验证码对象
         arp.addMapping("feedback", FeedBack.class); //意见反馈表
+
+
 	}
 
     /**
@@ -76,6 +88,13 @@ public class AppConfig extends JFinalConfig {
 		
 	}
 
+    public static HikariCPPlugin createHikariCPPlugin() {
+        return new HikariCPPlugin(PropKit.get("jdbcUrl"),
+                PropKit.get("user"),
+                PropKit.get("password"),
+                PropKit.get("driverClass"),
+                PropKit.getInt("maxPoolSize"));
+    }
     /**
      * handle 配置*
      */

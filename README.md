@@ -10,6 +10,8 @@
         3.对接blog.lanccj.cn博客
             3.1检测用户是否可以注册
             3.2用户登录
+        4.加入_JFinalGenerator用于自动生成数据表映射代码
+        5.加入BlogAPIController 博客类控制器  
 
 ### 项目介绍
 

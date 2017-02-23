@@ -41,4 +41,17 @@ public final class AppConstant {
      * 默认的头像路径, 与prefix值拼接后可访问*
      */
     public static final String RES_DEFAULT_USER_AVATAR = "resource.defaultUserAvatar";
+
+
+    //微博相关
+    /**
+     * 微博内容类型
+     * artical  一般的图文博客内容
+     * image    美图博客 图片展示
+     * video    视频展示
+     * message  留言板类型
+     */
+    public enum ArticalType {
+        artical, image, video, message;
+    }
 }

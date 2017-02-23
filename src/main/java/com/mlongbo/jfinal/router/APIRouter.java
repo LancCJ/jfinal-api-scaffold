@@ -15,5 +15,7 @@ public class APIRouter extends Routes {
         add("/api/v1/account", AccountAPIController.class);
         //文件相关
         add("/api/v1/fs",FileAPIController.class);
+        //微博文章
+        add("/api/v1/blog",BlogAPIController.class);
     }
 }
