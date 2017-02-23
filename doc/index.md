@@ -10,7 +10,7 @@
 ## 意见反馈
 
 #### URL
-	/api/feedback
+	/api/v版本号/feedback
 
 #### METHOD
 	POST(必须是POST)
@@ -40,7 +40,7 @@
 ## 版本更新检查
 
 #### URL
-	/api/version/check
+	/api/v版本号/version/check
 
 #### METHOD
 	GET

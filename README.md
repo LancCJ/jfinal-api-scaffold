@@ -7,7 +7,9 @@
     
         1.将jfinal 1.9升级至3.0  修改部分不兼容代码
         2.项目中采用3.0新特性 [sql管理与动态管理] 逐渐全部修改 暂时在AccountAPIController-checkUser中尝试了 很不错
-
+        3.对接blog.lanccj.cn博客
+            3.1检测用户是否可以注册
+            3.2用户登录
 
 ### 项目介绍
 
@@ -48,17 +50,17 @@ String str = AppProperty.me().resourcePrefix();
 
 ### 已实现的常用接口列表
 
-* 检查账号是否被注册: `GET` `/api/account/checkUser`
-* 发送注册验证码: `POST` `/api/account/sendCode`
-* 注册: `POST` `/api/account/register`
-* 登录： `POST` `/api/account/login`
-* 查询用户资料: `GET` `/api/account/profile`
-* 修改用户资料: `PUT` `/api/account/profile`
-* 修改密码: `PUT` `/api/account/password`
-* 修改头像: `PUT` `/api/account/avatar`
-* 意见反馈: `POST` `/api/feedback`
-* 版本更新检查: `GET` `/api/version/check`
-* 文件上传: `POST` `/api/fs/upload`
+* 检查账号是否被注册: `GET` `/api/v版本号/account/checkUser`
+* 发送注册验证码: `POST` `/api/v版本号/account/sendCode`
+* 注册: `POST` `/api/v版本号/account/register`
+* 登录： `POST` `/api/v版本号/account/login`
+* 查询用户资料: `GET` `/api/v版本号/account/profile`
+* 修改用户资料: `PUT` `/api/v版本号/account/profile`
+* 修改密码: `PUT` `/api/v版本号/account/password`
+* 修改头像: `PUT` `/api/v版本号/account/avatar`
+* 意见反馈: `POST` `/api/v版本号/feedback`
+* 版本更新检查: `GET` `/api/v版本号/version/check`
+* 文件上传: `POST` `/api/v版本号/fs/upload`
 
 ### 数据响应规范
 

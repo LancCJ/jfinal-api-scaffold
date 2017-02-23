@@ -8,7 +8,6 @@ import com.mlongbo.jfinal.model.User;
 import com.mlongbo.jfinal.common.bean.BaseResponse;
 import com.mlongbo.jfinal.common.bean.Code;
 import com.mlongbo.jfinal.common.token.TokenManager;
-
 import java.lang.reflect.Array;
 import java.util.List;
 

@@ -3,7 +3,7 @@
 ### 检查账号是否被注册
 
 #### URL
-	/api/account/checkUser
+	/api/v版本号/account/checkUser
 
 #### METHOD
 	GET
@@ -31,7 +31,7 @@ code值含义:
 ### 发送手机验证码
 
 #### URL
-	/api/account/sendCode
+	/api/v版本号/account/sendCode
 
 #### METHOD
 	POST(推荐)或GET
@@ -60,7 +60,7 @@ code值含义:
 ### 注册
 
 #### URL
-	/api/account/register
+	/api/v版本号/account/register
 
 #### METHOD
 	POST
@@ -85,7 +85,7 @@ code值含义:
 ### 登录
 
 #### URL
-	/api/account/login
+	/api/v版本号/account/login
 
 #### METHOD
 	POST
@@ -146,7 +146,7 @@ code值含义:
 ### 查询用户资料
 
 #### URL
-	/api/account/profile
+	/api/v版本号/account/profile
 
 #### METHOD
 	GET(必须是get方法，否则请求出错)
@@ -197,7 +197,7 @@ code值含义:
 除token必须以外，修改哪个参数，就传递哪个参数
 
 #### URL
-	/api/account/profile
+	/api/v版本号/account/profile
 
 #### METHOD
 	PUT
@@ -228,7 +228,7 @@ code值含义:
 ### 修改密码
 
 #### URL
-	/api/account/password
+	/api/v版本号/account/password
 
 #### METHOD
 	PUT
@@ -256,7 +256,7 @@ code值含义:
 ### 修改头像
 
 #### URL
-	/api/account/avatar
+	/api/v版本号/account/avatar
 
 #### METHOD
 	PUT

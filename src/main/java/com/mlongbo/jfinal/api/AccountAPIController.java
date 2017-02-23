@@ -26,14 +26,14 @@ import java.util.Map;
 /**
  * 用户账号相关的接口*
  *
- * 检查账号是否被注册: GET /api/account/checkUser
- * 发送注册验证码: POST /api/account/sendCode
- * 注册: POST /api/account/register
- * 登录： POST /api/account/login
- * 查询用户资料: GET /api/account/profile
- * 修改用户资料: PUT /api/account/profile
- * 修改密码: PUT /api/account/password
- * 修改头像: PUT /api/account/avatar
+ * 检查账号是否被注册: GET /api/v版本号/account/checkUser
+ * 发送注册验证码: POST /api/v版本号/account/sendCode
+ * 注册: POST /api/v版本号/account/register
+ * 登录： POST /api/v版本号/account/login
+ * 查询用户资料: GET /api/v版本号/account/profile
+ * 修改用户资料: PUT /api/v版本号/account/profile
+ * 修改密码: PUT /api/v版本号/account/password
+ * 修改头像: PUT /api/v版本号/account/avatar
  *
  * @author malongbo
  */
@@ -180,19 +180,34 @@ public class AccountAPIController extends BaseAPIController {
         )) {
             return;
         }
-        String sql = "SELECT * FROM t_user WHERE loginName=? AND password=?";
-        User nowUser = User.user.findFirst(sql, loginName, StringUtils.encodePassword(password, "md5"));
+
+        //先去查询是够存在该用户  存在的话将信息检索出来
+        JMap cond= JMap.create("userName",loginName);
+        SqlPara sqlPara=Db.getSqlPara("checkUser",cond);
+        User nowUser = User.user.findFirst(sqlPara);
+
         LoginResponse response = new LoginResponse();
+
         if (nowUser == null) {
+            response.setCode(Code.FAIL).setMessage("this user is not exist");
+            renderJson(response);
+            return;
+        }
+
+        //检索到后比对下密码即可.set("password",
+        String encodePassword=StringUtils.encodePassword(nowUser.get("uuid")+password, "md5");
+        if(!nowUser.get("password").equals(encodePassword)){
             response.setCode(Code.FAIL).setMessage("userName or password is error");
             renderJson(response);
             return;
         }
+
         Map<String, Object> userInfo = new HashMap<String, Object>(nowUser.getAttrs());
         userInfo.remove(PASSWORD);
         response.setInfo(userInfo);
         response.setMessage("login success");
-        response.setToken(TokenManager.getMe().generateToken(nowUser));
+        String userToken=TokenManager.getMe().generateToken(nowUser);
+        response.setToken(userToken);
         response.setConstant(Constant.me());
         renderJson(response);
     }
@@ -309,7 +324,7 @@ public class AccountAPIController extends BaseAPIController {
     
     /**
      * 修改头像接口
-     * /api/account/avatar
+     * /api/v版本号/account/avatar
      */
     public void avatar() {
         if (!"put".equalsIgnoreCase(getRequest().getMethod())) {

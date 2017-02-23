@@ -10,10 +10,10 @@ public class APIRouter extends Routes {
     @Override
     public void config() {
         //公共api
-        add("/api", CommonAPIController.class);
+        add("/api/v1", CommonAPIController.class);
         //用户相关
-        add("/api/account", AccountAPIController.class);
+        add("/api/v1/account", AccountAPIController.class);
         //文件相关
-        add("/api/fs",FileAPIController.class);
+        add("/api/v1/fs",FileAPIController.class);
     }
 }

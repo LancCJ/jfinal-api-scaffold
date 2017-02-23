@@ -45,9 +45,7 @@ public class AppConfig extends JFinalConfig {
      */
 	@Override
 	public void configPlugin(Plugins me) {
-//		C3p0Plugin cp = new C3p0Plugin(loadPropertyFile("jdbc.properties"));
-//		me.add(cp);
-        
+
         //初始化连接池插件
         loadPropertyFile("jdbc.properties");
         HikariCPPlugin hcp = new HikariCPPlugin(getProperty("jdbcUrl"), 
@@ -61,6 +59,7 @@ public class AppConfig extends JFinalConfig {
         ActiveRecordPlugin arp = new ActiveRecordPlugin(hcp);
         arp.setBaseSqlTemplatePath(PathKit.getRootClassPath()+"/sqls");
         arp.addSqlTemplate("checkUser.sql");//检查用户账号是否被注册
+        arp.setShowSql(true);
 		me.add(arp);
 		
 		arp.addMapping("user", User.USER_ID, User.class);//用户表

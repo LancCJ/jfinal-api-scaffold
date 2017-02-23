@@ -16,8 +16,8 @@ import com.mlongbo.jfinal.version.VersionManager;
 /**
  * 公共模块的api*
  * 
- * 意见反馈: POST /api/feedback
- * 版本更新检查: GET /api/version/check
+ * 意见反馈: POST /api/v版本号/feedback
+ * 版本更新检查: GET /api/v版本号/version/check
  *
  * @author malongbo
  */
@@ -57,7 +57,7 @@ public class CommonAPIController extends BaseAPIController{
     /**
      * 版本更新检查*
      */
-    @ActionKey("/api/version/check")
+    @ActionKey("/api/v版本号/version/check")
     public void checkVersion() {
         String version = getPara("version");//版本号
         String client = getPara("client"); //终端类型, 可选值有android, iphone
