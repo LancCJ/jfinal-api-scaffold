@@ -1,7 +1,7 @@
 # jfinal-api-scaffold
 
 
-### 更新日志
+### 更新日志[LancCJ]
 
     2017年02月23日
     

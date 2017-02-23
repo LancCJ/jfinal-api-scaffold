@@ -79,7 +79,10 @@ public class AccountAPIController extends BaseAPIController {
         }
 
         //检查手机号码是否被注册
-        if (Db.findFirst("SELECT * FROM t_user WHERE loginName=?", loginName) != null) {
+
+        JMap cond= JMap.create("userName",loginName);
+
+        if (Db.findFirst(Db.getSqlPara("checkUser",cond)) != null) {
             renderJson(new BaseResponse(Code.ACCOUNT_EXISTS,"mobile already registered"));
             return;
         }
@@ -97,7 +100,7 @@ public class AccountAPIController extends BaseAPIController {
                 .set(RegisterCode.CODE, smsCode);
 
         //保存数据
-        if (Db.findFirst("SELECT * FROM t_register_code WHERE mobile=?", loginName) == null) {
+        if (Db.findFirst(Db.getSqlPara("checkSendCode",cond)) == null) {
             registerCode.save();
         } else {
             registerCode.update();
