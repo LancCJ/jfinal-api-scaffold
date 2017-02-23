@@ -1,6 +1,7 @@
 package com.mlongbo.jfinal;
 
 import com.jfinal.config.*;
+import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
@@ -58,6 +59,8 @@ public class AppConfig extends JFinalConfig {
         me.add(hcp);
         
         ActiveRecordPlugin arp = new ActiveRecordPlugin(hcp);
+        arp.setBaseSqlTemplatePath(PathKit.getRootClassPath()+"/sqls");
+        arp.addSqlTemplate("checkUser.sql");//检查用户账号是否被注册
 		me.add(arp);
 		
 		arp.addMapping("user", User.USER_ID, User.class);//用户表

@@ -2,8 +2,10 @@ package com.mlongbo.jfinal.api;
 
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
+import com.jfinal.kit.JMap;
 import com.jfinal.log.Log;
 import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.SqlPara;
 import com.mlongbo.jfinal.common.bean.*;
 import com.mlongbo.jfinal.common.utils.SMSUtils;
 import com.mlongbo.jfinal.common.Require;
@@ -50,7 +52,11 @@ public class AccountAPIController extends BaseAPIController {
             return;
         }
         //检查手机号码是否被注册
-        boolean exists = Db.findFirst("SELECT * FROM t_user WHERE loginName=?", loginName) != null;
+
+        JMap cond= JMap.create("userName",loginName);
+        SqlPara sqlPara=Db.getSqlPara("checkUser",cond);
+        boolean exists = Db.findFirst(sqlPara) != null;
+
         renderJson(new BaseResponse(exists ? Code.SUCCESS:Code.FAIL, exists ? "registered" : "unregistered"));
     }
     
