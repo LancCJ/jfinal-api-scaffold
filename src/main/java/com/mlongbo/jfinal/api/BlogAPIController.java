@@ -19,7 +19,7 @@ public class BlogAPIController extends BaseAPIController{
     public void list(){
         Integer pageSize = getParaToInt("pageSize",6);
         Integer pageNum = getParaToInt("pageNum",1);
-        String ariticalType = getPara("ariticalType","artical");
+        String dataType = getPara("dataType","blog");
         JMap cond= JMap.create("pageStart",(pageNum-1)*pageSize).set("pageSize",pageSize);
 
         DataResponse response=new DataResponse();
@@ -27,7 +27,7 @@ public class BlogAPIController extends BaseAPIController{
         response.setMessage("未查询到数据");
 
         //判断检索数据类型
-        switch(AppConstant.ArticalType.valueOf(ariticalType)){
+        switch(AppConstant.ArticalType.valueOf(dataType)){
             case video:
                 List<Video> videos = Video.dao.find(Db.getSqlPara("listVideo",cond));
                 if(videos!=null){

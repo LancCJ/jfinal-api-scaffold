@@ -52,6 +52,6 @@ public final class AppConstant {
      * message  留言板类型
      */
     public enum ArticalType {
-        artical, image, video, message;
+        blog, image, video, message;
     }
 }
