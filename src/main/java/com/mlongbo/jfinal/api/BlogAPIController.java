@@ -17,7 +17,7 @@ public class BlogAPIController extends BaseAPIController{
     private static Log log = Log.getLog(BlogAPIController.class);
 
     public void list(){
-        Integer pageSize = getParaToInt("pageSize",10);
+        Integer pageSize = getParaToInt("pageSize",6);
         Integer pageNum = getParaToInt("pageNum",1);
         String ariticalType = getPara("ariticalType","artical");
         JMap cond= JMap.create("pageStart",(pageNum-1)*pageSize).set("pageSize",pageSize);
