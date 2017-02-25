@@ -6,6 +6,7 @@ import com.jfinal.plugin.activerecord.Db;
 import com.mlongbo.jfinal.common.bean.Code;
 import com.mlongbo.jfinal.common.bean.DataResponse;
 import com.mlongbo.jfinal.config.AppConstant;
+import com.mlongbo.jfinal.model.Beauty;
 import com.mlongbo.jfinal.model.Blog;
 import com.mlongbo.jfinal.model.Video;
 import java.util.List;
@@ -37,6 +38,12 @@ public class BlogAPIController extends BaseAPIController{
                 }
                 break;
             case image:
+                List<Beauty> beauty = Beauty.dao.find(Db.getSqlPara("listImage",cond));
+                if(beauty!=null){
+                    response.setCode(Code.SUCCESS);
+                    response.setMessage("成功查询到美图列表数据");
+                    response.setData(beauty);
+                }
                 break;
             case message:
                 break;
