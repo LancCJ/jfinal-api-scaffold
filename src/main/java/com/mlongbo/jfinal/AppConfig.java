@@ -65,6 +65,7 @@ public class AppConfig extends JFinalConfig {
         arp.addSqlTemplate("listImage.sql");//查询美图列表
         arp.addSqlTemplate("listMsg.sql");//查询留言列表
         arp.addSqlTemplate("listVideo.sql");//查询视频列表
+        arp.addSqlTemplate("updateBlogViewCount.sql");//更新BLOG查看次数
         arp.setShowSql(true);
 		me.add(arp);
 

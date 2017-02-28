@@ -3,6 +3,7 @@ package com.mlongbo.jfinal.api;
 import com.jfinal.kit.JMap;
 import com.jfinal.log.Log;
 import com.jfinal.plugin.activerecord.Db;
+import com.mlongbo.jfinal.common.Require;
 import com.mlongbo.jfinal.common.bean.Code;
 import com.mlongbo.jfinal.common.bean.DataResponse;
 import com.mlongbo.jfinal.config.AppConstant;
@@ -16,6 +17,40 @@ import java.util.List;
  */
 public class BlogAPIController extends BaseAPIController{
     private static Log log = Log.getLog(BlogAPIController.class);
+
+    public void updateviewcount(){
+        String dataType = getPara("dataType","blog");
+        String id = getPara("id");
+
+        JMap cond= JMap.create();
+
+        //使用此方式的前提是当前controller类要继承自BaseAPIController类
+        if (!notNull(Require.me().put(id, "id参数不能为空"))) {
+            return;
+        }
+
+        DataResponse response=new DataResponse();
+        response.setCode(Code.FAIL);
+        response.setMessage("更新阅览次数失败");
+
+        //判断检索数据类型
+        switch(AppConstant.ArticalType.valueOf(dataType)){
+            case video:
+                break;
+            case image:
+                break;
+            case message:
+                break;
+            default:
+                int effectNum=Db.update(Db.getSql("updateBlogViewCount",cond),id);
+                if(1==effectNum){
+                    response.setCode(Code.SUCCESS);
+                    response.setMessage("更新阅览次数成功");
+                }
+                break;
+        }
+        renderJson(response);
+    }
 
     public void list(){
         Integer pageSize = getParaToInt("pageSize",6);
