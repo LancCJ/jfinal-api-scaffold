@@ -308,8 +308,8 @@ public class AccountAPIController extends BaseAPIController {
     	String oldPwd = getPara("oldPwd");
     	String newPwd = getPara("newPwd");
     	if(!notNull(Require.me()
-    			.put(oldPwd, "old password can not be null")
-    			.put(newPwd, "new password can not be null"))){
+    			.put(oldPwd, "旧密码不允许为空")
+    			.put(newPwd, "新密码不允许为空"))){
     		return;
     	}
     	//用户真实的密码
@@ -318,7 +318,7 @@ public class AccountAPIController extends BaseAPIController {
     		boolean flag = nowUser.set(User.PASSWORD, StringUtils.encodePassword(newPwd, "md5")).update();
             renderJson(new BaseResponse(flag?Code.SUCCESS:Code.FAIL, flag?"success":"failed"));
     	}else{
-            renderJson(new BaseResponse(Code.FAIL, "oldPwd is invalid"));
+            renderJson(new BaseResponse(Code.FAIL, "旧密码不正确"));
     	}
     }
     
